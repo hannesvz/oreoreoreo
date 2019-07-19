@@ -1,6 +1,9 @@
 // code by hannesvz
 
-let cy = 0,textsize = 30,textsizemax = 30,dx,dy,o1,o2,re,arial_rounded;
+// https://github.com/hannesvz/oreoreoreo
+
+let cy = 0,textsize = 30,textsizemax = 30;
+let dx,dy,o1,o2,re,arial_rounded;
 
 let current = ['o','r','o'];
 
@@ -9,7 +12,7 @@ let word = '';
 let tick1, tick2 = 0;
 let blink = true;
 
-const leftside = 50;
+const leftside = 25;
 
 function preload() {
   o1 = loadImage('o1.png');
@@ -21,20 +24,26 @@ function preload() {
 function setup() {
   frameRate(30);
   createCanvas(window.innerWidth, window.innerHeight);
-  dx = width / 2;
-  dy = window.innerHeight - 70;
-  
-  
+  windowResized();
 }
 
 function windowResized() {
   resizeCanvas(window.innerWidth, window.innerHeight);
-  dx = width / 2;
-  dy = height - 50;
+  
+  // calculate the width of the help text
+  textFont(arial_rounded);
+  strokeWeight(0);
+  textSize(15);
+  let textW = textWidth('backspace to undo.');
+  leftpadding = (leftside + textW + 20) - ((window.innerWidth / 2) - (o1.width/2));
+  
+  // add some padding to the cookie's x position if it overlaps the help text
+  dx = (window.innerWidth / 2) + ((leftpadding > 0) ? leftpadding : 0);
+  dy = window.innerHeight - 25;
 }
 
-// check for an 'o' or 'r' keypress
-function keyTyped() {
+// check for a backspace pressed
+function keyPressed() {
   // stack can only be added to if it isn't already at the top of the screen
   if (cy > 50) {
     if (key.toLowerCase() === 'o') {
@@ -49,12 +58,8 @@ function keyTyped() {
   if (key.toLowerCase() === 'c') {
     current = [];
   }
-
-}
-
-// check for a backspace pressed
-function keyPressed() {
-    if ((keyCode === BACKSPACE) & (current.length > 0)) {
+  
+  if ((keyCode === BACKSPACE) & (current.length > 0)) {
       current.pop();
     }
 }
@@ -109,12 +114,10 @@ function drawButtons() {
   rectMode(CENTER);
   image (o1, (window.innerWidth - 30) - o1.width, (dy - 60) - o1.height, o1.width / 2, o1.height / 2);
   image (re, (window.innerWidth - 40) - re.width, (dy - 30) - re.height, re.width / 2, re.height / 2);
-
 }
 
 
 function draw() {
-    
   background(255);
 
   // build the word to be printed to the screen
@@ -152,5 +155,4 @@ function draw() {
 
   // draw a phat cookie
   drawOreos();
-  
 }
