@@ -14,6 +14,9 @@ let blink = true;
 
 const leftside = 25;
 
+const button_upscaled = 1.1;
+const button_downscaled = 0.8;
+
 function preload() {
   o1 = loadImage('o1.png');
   o2 = loadImage('o2.png');
@@ -26,7 +29,7 @@ function scaleImgUp() {
 }
 
 function scaleImgDefault() {
-  this.size (o1.width * 0.5, o1.height * 0.5);
+  this.size (o1.width * button_downscaled, o1.height * button_downscaled);
 }
 
 function setup() {
@@ -35,29 +38,29 @@ function setup() {
   windowResized();
 
   btn_o = createImg('o1.png');
-  btn_o.position(leftside, dy - 375);
+  btn_o.position(leftside, dy - 395);
   btn_o.mousePressed(()=>{ current.push('o'); });
-  btn_o.size (o1.width * 0.5,o1.height * 0.5);
+  btn_o.size (o1.width * button_downscaled, o1.height * button_downscaled);
   btn_o.mouseOver(scaleImgUp);
   btn_o.mouseOut(scaleImgDefault);
   
   btn_r = createImg('re.png');
-  btn_r.position(leftside, dy - 285);
-  btn_r.size (o1.width * 0.5,o1.height * 0.5);
+  btn_r.position(leftside, dy - 305);
+  btn_r.size (o1.width * button_downscaled, o1.height * button_downscaled);
   btn_r.mouseOver(scaleImgUp);
   btn_r.mouseOut(scaleImgDefault);
   btn_r.mousePressed(()=>{ current.push('r'); });
   
   btn_b = createImg('backspace.png');
-  btn_b.position(leftside, dy - 200);
-  btn_b.size (o1.width * 0.5,o1.height * 0.5);
+  btn_b.position(leftside, dy - 220);
+  btn_b.size (o1.width * button_downscaled, o1.height * button_downscaled);
   btn_b.mouseOver(scaleImgUp);
   btn_b.mouseOut(scaleImgDefault);
   btn_b.mousePressed(()=>{ current.pop(); });
   
   btn_c = createImg('clear.png');
-  btn_c.position(leftside, dy - 110);
-  btn_c.size (o1.width * 0.5,o1.height * 0.5);
+  btn_c.position(leftside, dy - 130);
+  btn_c.size (o1.width * button_downscaled, o1.height * button_downscaled);
   btn_c.mouseOver(scaleImgUp);
   btn_c.mouseOut(scaleImgDefault);
   btn_c.mousePressed(()=>{ current = []; });
