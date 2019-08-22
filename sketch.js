@@ -21,10 +21,46 @@ function preload() {
   arial_rounded = loadFont('arial_rounded.ttf');
 }
 
+function scaleImgUp() {
+  this.size (this.width * 1.1, this.height * 1.1);
+}
+
+function scaleImgDefault() {
+  this.size (o1.width * 0.5, o1.height * 0.5);
+}
+
 function setup() {
   frameRate(30);
   createCanvas(window.innerWidth, window.innerHeight);
   windowResized();
+
+  btn_o = createImg('o1.png');
+  btn_o.position(leftside, dy - 375);
+  btn_o.mousePressed(()=>{ current.push('o'); });
+  btn_o.size (o1.width * 0.5,o1.height * 0.5);
+  btn_o.mouseOver(scaleImgUp);
+  btn_o.mouseOut(scaleImgDefault);
+  
+  btn_r = createImg('re.png');
+  btn_r.position(leftside, dy - 285);
+  btn_r.size (o1.width * 0.5,o1.height * 0.5);
+  btn_r.mouseOver(scaleImgUp);
+  btn_r.mouseOut(scaleImgDefault);
+  btn_r.mousePressed(()=>{ current.push('r'); });
+  
+  btn_b = createImg('backspace.png');
+  btn_b.position(leftside, dy - 200);
+  btn_b.size (o1.width * 0.5,o1.height * 0.5);
+  btn_b.mouseOver(scaleImgUp);
+  btn_b.mouseOut(scaleImgDefault);
+  btn_b.mousePressed(()=>{ current.pop(); });
+  
+  btn_c = createImg('clear.png');
+  btn_c.position(leftside, dy - 110);
+  btn_c.size (o1.width * 0.5,o1.height * 0.5);
+  btn_c.mouseOver(scaleImgUp);
+  btn_c.mouseOut(scaleImgDefault);
+  btn_c.mousePressed(()=>{ current = []; });
 }
 
 function windowResized() {
@@ -148,9 +184,9 @@ function draw() {
   
   // draw the instructions
   textSize(15);
-  text('O for a cookie.', leftside, dy - 150);
-  text('R for some filling.', leftside, dy - 120);
-  text('backspace to undo.', leftside, dy - 90);
+  text('O for a cookie.', leftside, dy - 320);
+  text('R for some filling.', leftside, dy - 230);
+  text('backspace to undo.', leftside, dy - 150);
   text('C to eat the stack.', leftside, dy - 60);
 
   // draw a phat cookie
