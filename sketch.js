@@ -12,58 +12,39 @@ let word = '';
 let tick1, tick2 = 0;
 let blink = true;
 
-const leftside = 25;
+const leftside = 50;
 
 const button_upscaled = 1.1;
-const button_downscaled = 0.8;
+const button_downscaled = 0.7;
+
+const o1_y = 390, re_y = 300, ib_y = 210, ic_y = 120;
+
+let iwidth, iheight;
 
 function preload() {
   o1 = loadImage('o1.png');
   o2 = loadImage('o2.png');
   re = loadImage('re.png');
+  ib = loadImage('backspace.png');
+  ic = loadImage('clear.png');
   arial_rounded = loadFont('arial_rounded.ttf');
+  iwidth = 115 * button_downscaled;
+  iheight = 70 * button_downscaled;
 }
 
 function scaleImgUp() {
-  this.size (this.width * 1.1, this.height * 1.1);
+  this.size (this.width * button_upscaled, this.height * button_upscaled);
 }
 
 function scaleImgDefault() {
   this.size (o1.width * button_downscaled, o1.height * button_downscaled);
 }
 
+
 function setup() {
   frameRate(30);
   createCanvas(window.innerWidth, window.innerHeight);
   windowResized();
-
-  btn_o = createImg('o1.png');
-  btn_o.position(leftside, dy - 395);
-  btn_o.mousePressed(()=>{ current.push('o'); });
-  btn_o.size (o1.width * button_downscaled, o1.height * button_downscaled);
-  btn_o.mouseOver(scaleImgUp);
-  btn_o.mouseOut(scaleImgDefault);
-  
-  btn_r = createImg('re.png');
-  btn_r.position(leftside, dy - 305);
-  btn_r.size (o1.width * button_downscaled, o1.height * button_downscaled);
-  btn_r.mouseOver(scaleImgUp);
-  btn_r.mouseOut(scaleImgDefault);
-  btn_r.mousePressed(()=>{ current.push('r'); });
-  
-  btn_b = createImg('backspace.png');
-  btn_b.position(leftside, dy - 220);
-  btn_b.size (o1.width * button_downscaled, o1.height * button_downscaled);
-  btn_b.mouseOver(scaleImgUp);
-  btn_b.mouseOut(scaleImgDefault);
-  btn_b.mousePressed(()=>{ current.pop(); });
-  
-  btn_c = createImg('clear.png');
-  btn_c.position(leftside, dy - 130);
-  btn_c.size (o1.width * button_downscaled, o1.height * button_downscaled);
-  btn_c.mouseOver(scaleImgUp);
-  btn_c.mouseOut(scaleImgDefault);
-  btn_c.mousePressed(()=>{ current = []; });
 }
 
 function windowResized() {
@@ -101,6 +82,15 @@ function keyPressed() {
   if ((keyCode === BACKSPACE) & (current.length > 0)) {
       current.pop();
     }
+}
+
+function mouseClicked() {
+  if (mouseX > leftside & mouseX < leftside + iwidth) {
+    if (mouseY > (dy - o1_y) & mouseY < (dy - o1_y) + iheight) current.push('o');
+    if (mouseY > (dy - re_y) & mouseY < (dy - re_y) + iheight) current.push('r');
+    if (mouseY > (dy - ib_y) & mouseY < (dy - ib_y) + iheight) current.pop();
+    if (mouseY > (dy - ic_y) & mouseY < (dy - ic_y) + iheight) current = [];
+  }
 }
 
 // blink the cursor
@@ -150,9 +140,10 @@ function drawOreos() {
 }
 
 function drawButtons() {
-  rectMode(CENTER);
-  image (o1, (window.innerWidth - 30) - o1.width, (dy - 60) - o1.height, o1.width / 2, o1.height / 2);
-  image (re, (window.innerWidth - 40) - re.width, (dy - 30) - re.height, re.width / 2, re.height / 2);
+  image(o1, leftside, dy - o1_y, iwidth, iheight);
+  image(re, leftside, dy - re_y, iwidth, iheight);
+  image(ib, leftside, dy - ib_y, iwidth, iheight);
+  image(ic, leftside, dy - ic_y, iwidth, iheight);
 }
 
 
@@ -186,6 +177,7 @@ function draw() {
   text(word + (blink ? '_' : ''), leftside, dy - 30, 700, 200);
   
   // draw the instructions
+  drawButtons();
   textSize(15);
   text('O for a cookie.', leftside, dy - 320);
   text('R for some filling.', leftside, dy - 230);
