@@ -6,3 +6,4 @@ web:
     locations:
         '/':
             root: 'web'
+            index: 'index.html'
