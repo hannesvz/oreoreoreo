@@ -1,0 +1,8 @@
+name: app
+
+type: nodejs:12
+
+web:
+    locations:
+        '/':
+            root: 'web'
