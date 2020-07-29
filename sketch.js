@@ -54,7 +54,7 @@ function windowResized() {
   textFont(arial_rounded);
   strokeWeight(0);
   textSize(15);
-  let textW = textWidth('backspace to undo.');
+  let textW = textWidth('backspace to undo the last letter.');
   leftpadding = (leftside + textW + 20) - ((window.innerWidth / 2) - (o1.width/2));
   
   // add some padding to the cookie's x position if it overlaps the help text
@@ -182,7 +182,7 @@ function draw() {
   text('O for a cookie.', leftside, dy - 320);
   text('R for some filling.', leftside, dy - 230);
   text('backspace to undo.', leftside, dy - 150);
-  text('C to eat the stack.', leftside, dy - 60);
+  text('C to clear the stack.', leftside, dy - 60);
 
   // draw a phat cookie
   drawOreos();
