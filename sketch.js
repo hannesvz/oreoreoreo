@@ -22,7 +22,6 @@ const o1_y = 390, re_y = 300, ib_y = 210, ic_y = 120;
 let iwidth, iheight;
 
 function preload() {
-  current = ['o','r','o'];
   o1 = loadImage('o1.png');
   o2 = loadImage('o2.png');
   re = loadImage('re.png');
@@ -43,6 +42,7 @@ function scaleImgDefault() {
 
 
 function setup() {
+  current = ['o','r','o'];
   frameRate(30);
   createCanvas(window.innerWidth, window.innerHeight);
   windowResized();
