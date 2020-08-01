@@ -5,7 +5,7 @@
 let cy = 0,textsize = 30,textsizemax = 30;
 let dx,dy,o1,o2,re,arial_rounded;
 
-let current = ['o','r','o'];
+let current;
 
 let word = '';
 
@@ -22,6 +22,7 @@ const o1_y = 390, re_y = 300, ib_y = 210, ic_y = 120;
 let iwidth, iheight;
 
 function preload() {
+  current = ['o','r','o'];
   o1 = loadImage('o1.png');
   o2 = loadImage('o2.png');
   re = loadImage('re.png');
