@@ -42,7 +42,7 @@ function scaleImgDefault() {
 
 
 function setup() {
-  current = ['o','r','o'];
+  current = getURLPath().length > 0 ? getURLPath()[0].replace(/re/g,'r').split('').filter(x => { return ['o','r'].includes(x)}) : ['o','r','o'];
   frameRate(30);
   createCanvas(window.innerWidth, window.innerHeight);
   windowResized();
