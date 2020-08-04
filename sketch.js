@@ -98,11 +98,15 @@ function keyPressed() {
 }
 
 function mouseClicked() {
+  oldlength = current.length;
   if (mouseX > leftside & mouseX < leftside + iwidth) {
     if (mouseY > (dy - o1_y) & mouseY < (dy - o1_y) + iheight) current.push('o');
     if (mouseY > (dy - re_y) & mouseY < (dy - re_y) + iheight) current.push('r');
     if (mouseY > (dy - ib_y) & mouseY < (dy - ib_y) + iheight) current.pop();
     if (mouseY > (dy - ic_y) & mouseY < (dy - ic_y) + iheight) current = [];
+  }
+  if (oldlength != current.length) {
+    update_url();
   }
 }
 
