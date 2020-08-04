@@ -40,6 +40,14 @@ function scaleImgDefault() {
   this.size (o1.width * button_downscaled, o1.height * button_downscaled);
 }
 
+function update_url() {
+  let urlstring = current.join('');
+  console.log(urlstring.length);
+  if (window.history.replaceState) {
+    window.history.replaceState(null, '', '/' + urlstring.replace(/r/g,'re'));
+  }
+
+}
 
 function setup() {
   current = getURLPath().length > 0 ? getURLPath()[0].replace(/re/g,'r').split('').filter(x => { return ['o','r'].includes(x)}) : ['o','r','o'];
@@ -69,19 +77,23 @@ function keyPressed() {
   if (cy > 50) {
     if (key.toLowerCase() === 'o') {
       current.push('o');
+      update_url();
     }
     if (key.toLowerCase() === 'r') {
       current.push('r');
+      update_url();
     }
   }
   
   // stack can always be cleared  
   if (key.toLowerCase() === 'c') {
     current = [];
+    update_url();
   }
   
   if ((keyCode === BACKSPACE) & (current.length > 0)) {
       current.pop();
+      update_url();
     }
 }
 
