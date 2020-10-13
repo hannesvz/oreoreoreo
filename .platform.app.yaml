@@ -20,17 +20,17 @@ hooks:
     build: |
         curl -sS https://platform.sh/cli/installer | php
 
-crons:
-    backup:
-        spec: '*/5 * * * *'
-        cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
-                platform backup:create --yes --no-wait
-                sleep 30
-            fi
-
-    testcron:
-        spec: '*/5 * * * *'
-        cmd: |
-            echo 'cron running...'
-            echo ${TESTVAR1}
+#crons:
+#    backup:
+#        spec: '*/5 * * * *'
+#        cmd: |
+#            if [ "$PLATFORM_BRANCH" = master ]; then
+#                platform backup:create --yes --no-wait
+#                sleep 30
+#            fi
+#
+#    testcron:
+#        spec: '*/5 * * * *'
+#        cmd: |
+#            echo 'cron running...'
+#            echo ${TESTVAR1}
