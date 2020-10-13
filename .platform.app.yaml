@@ -24,6 +24,6 @@ crons:
     backup:
         spec: '*/10 * * * *'
         cmd: |
-            if [ "$PLATFORM_BRANCH" = "dev" ]; then
+            if [ "$PLATFORM_BRANCH" = dev ]; then
                 platform backup:create --yes --no-wait
             fi
