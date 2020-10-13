@@ -15,3 +15,15 @@ web:
                 - 'index.html'
             allow: true
             expires: 24h
+
+hooks:
+    build: |
+        curl -sS https://platform.sh/cli/installer | php
+
+crons:
+    backup:
+        spec: '*/10 * * * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = "dev" ]; then
+                platform backup:create --yes --no-wait
+            fi
