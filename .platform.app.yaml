@@ -26,6 +26,7 @@ crons:
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
                 platform backup:create --yes --no-wait
+                sleep 30
             fi
 
     testcron:
