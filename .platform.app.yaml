@@ -29,7 +29,7 @@ crons:
             fi
 
     testcron:
-        spec: '* * * * *'
+        spec: '*/5 * * * *'
         cmd: |
             echo 'cron running...'
             echo ${TESTVAR1}
