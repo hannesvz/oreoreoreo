@@ -22,7 +22,7 @@ hooks:
 
 crons:
     backup:
-        spec: '*/10 * * * *'
+        spec: '*/5 * * * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
                 platform backup:create --yes --no-wait
