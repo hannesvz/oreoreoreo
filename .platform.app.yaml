@@ -27,3 +27,9 @@ crons:
             if [ "$PLATFORM_BRANCH" = master ]; then
                 platform backup:create --yes --no-wait
             fi
+
+    testcron:
+        spec: '* * * * *'
+        cmd: |
+            echo 'cron running...'
+            echo ${TESTVAR1}
