@@ -19,6 +19,7 @@ web:
 hooks:
     build: |
         curl -sS https://platform.sh/cli/installer | php
+        echo ${TESTVAR1}
 
 #crons:
 #    backup:
